@@ -146,6 +146,9 @@ export const SignupPage: React.FC = () => {
               <p className="mt-1 text-xs text-gray-500">
                 Note: Admin role is only granted if no admin exists yet
               </p>
+              <p className="mt-1 text-xs text-gray-500">
+                Note: As I have already created admin you cant.
+              </p>
             </div>
           </div>
 

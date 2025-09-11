@@ -5,7 +5,7 @@ class WebSocketService {
   private socket: Socket | null = null;
   private listeners: Map<string, Set<(data: WebSocketMessage) => void>> = new Map();
 
-  connect(url: string = process.env.REACT_APP_API_URL || 'ws://localhost:8000') {
+  connect(url: string = process.env.REACT_APP_WS_URL || 'ws://localhost:8000') {
     if (this.socket?.connected) return;
 
     this.socket = io(url, {
@@ -36,7 +36,6 @@ class WebSocketService {
     }
     this.listeners.get(tripId)!.add(callback);
 
-    // Return unsubscribe function
     return () => {
       const callbacks = this.listeners.get(tripId);
       if (callbacks) {
@@ -56,4 +55,6 @@ class WebSocketService {
   }
 }
 
-export default new WebSocketService();
+// Assign to a variable before exporting
+const webSocketService = new WebSocketService();
+export default webSocketService;

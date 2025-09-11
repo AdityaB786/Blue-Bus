@@ -1,6 +1,8 @@
 # Blue Bus
 
-A real-time bus ticket booking system with seat selection, hold mechanism, and WebSocket updates.
+A real-time bus ticket booking system with seat selection, hold mechanism, and WebSocket updates.  
+
+**Live Demo:** [https://blue-bus.vercel.app/](https://blue-bus.vercel.app/)
 
 ## Features
 
@@ -41,14 +43,16 @@ A real-time bus ticket booking system with seat selection, hold mechanism, and W
 1. Navigate to the API directory:
 ```bash
 cd api
-```
+````
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create `.env` file:
+
 ```env
 DATABASE_URL=postgres://username:password@localhost:5432/ticket_booking
 REDIS_URL=redis://localhost:6379
@@ -58,6 +62,7 @@ PORT=5000
 ```
 
 4. Start the server:
+
 ```bash
 npm run dev
 ```
@@ -65,16 +70,19 @@ npm run dev
 ### Frontend Setup
 
 1. Navigate to the client directory:
+
 ```bash
 cd client
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
-4. Start the development server:
+3. Start the development server:
+
 ```bash
 npm start
 ```
@@ -82,51 +90,26 @@ npm start
 ## API Endpoints
 
 ### Authentication
-- `POST /api/auth/signup` - Create new account
-- `POST /api/auth/login` - Login
+
+* `POST /api/auth/signup` - Create new account
+* `POST /api/auth/login` - Login
 
 ### Trips
-- `GET /api/trips` - Get all trips (public)
-- `GET /api/trips/:id` - Get trip details (public)
-- `POST /api/trips` - Create trip (admin only)
+
+* `GET /api/trips` - Get all trips (public)
+* `GET /api/trips/:id` - Get trip details (public)
+* `POST /api/trips` - Create trip (admin only)
 
 ### Seats
-- `GET /api/seats/:tripId/status` - Get seat status (public)
-- `POST /api/seats/:tripId/hold` - Hold seats (auth required)
-- `POST /api/seats/:tripId/purchase` - Purchase seats (auth required)
-- `POST /api/seats/:tripId/release` - Release seats (auth required)
+
+* `GET /api/seats/:tripId/status` - Get seat status (public)
+* `POST /api/seats/:tripId/hold` - Hold seats (auth required)
+* `POST /api/seats/:tripId/purchase` - Purchase seats (auth required)
+* `POST /api/seats/:tripId/release` - Release seats (auth required)
 
 ### Bookings
-- `GET /api/bookings/my` - Get user's bookings (auth required)
-- `GET /api/bookings` - Get all bookings (admin only)
-- `DELETE /api/bookings/:bookingId` - Cancel booking (auth required)
 
+* `GET /api/bookings/my` - Get user's bookings (auth required)
+* `GET /api/bookings` - Get all bookings (admin only)
+* `DELETE /api/bookings/:bookingId` - Cancel booking (auth required)
 
-### Create Admin User
-First user to signup with role "admin" becomes admin:
-```json
-{
-  "name": "Admin",
-  "email": "admin@example.com",
-  "password": "password123",
-  "role": "admin"
-}
-```
-
-### Create Sample Trip (Admin)
-```json
-{
-  "title": "Express Bus",
-  "route_from": "Delhi",
-  "route_to": "Agra",
-  "departure_at": "2024-12-25T10:00:00Z",
-  "arrival_at": "2024-12-25T14:00:00Z",
-  "bus_type": "luxury",
-  "seats": [
-    {"number": 1, "price": 50, "row": 1},
-    {"number": 2, "price": 50, "row": 1},
-    {"number": 3, "price": 50, "row": 1},
-    {"number": 4, "price": 50, "row": 1}
-  ]
-}
-```

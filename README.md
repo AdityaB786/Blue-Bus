@@ -1,4 +1,4 @@
-# Bus Ticket Booking System
+# Blue Bus
 
 A real-time bus ticket booking system with seat selection, hold mechanism, and WebSocket updates.
 
@@ -34,7 +34,7 @@ A real-time bus ticket booking system with seat selection, hold mechanism, and W
 - Node.js (v14+)
 - PostgreSQL
 - Redis
-- npm or yarn
+- npm
 
 ### Backend Setup
 
@@ -74,12 +74,6 @@ cd client
 npm install
 ```
 
-3. Create `.env` file:
-```env
-REACT_APP_API_URL=http://localhost:5000/api
-REACT_APP_WS_URL=http://localhost:5000
-```
-
 4. Start the development server:
 ```bash
 npm start
@@ -107,16 +101,6 @@ npm start
 - `GET /api/bookings` - Get all bookings (admin only)
 - `DELETE /api/bookings/:bookingId` - Cancel booking (auth required)
 
-## Key Improvements Implemented
-
-1. **Atomic Redis Operations**: Using SET NX for preventing race conditions
-2. **Input Validation**: Comprehensive validation middleware for all endpoints
-3. **Trip Validation**: Checks for trip existence and sale window
-4. **Proper Error Handling**: Detailed error messages and status codes
-5. **Transaction Management**: Database transactions for critical operations
-6. **WebSocket Integration**: Real-time updates for seat status changes
-
-## Testing
 
 ### Create Admin User
 First user to signup with role "admin" becomes admin:
@@ -132,9 +116,9 @@ First user to signup with role "admin" becomes admin:
 ### Create Sample Trip (Admin)
 ```json
 {
-  "title": "Express Bus to NYC",
-  "route_from": "Boston",
-  "route_to": "New York",
+  "title": "Express Bus",
+  "route_from": "Delhi",
+  "route_to": "Agra",
   "departure_at": "2024-12-25T10:00:00Z",
   "arrival_at": "2024-12-25T14:00:00Z",
   "bus_type": "luxury",
@@ -146,11 +130,3 @@ First user to signup with role "admin" becomes admin:
   ]
 }
 ```
-
-## Architecture Decisions
-
-1. **Redux for State Management**: Centralized state for complex booking flow
-2. **Socket.IO over WebSocket**: Better browser compatibility and reconnection handling
-3. **Atomic Redis Operations**: Prevents race conditions in distributed systems
-4. **Sequelize ORM**: Type-safe database queries with migration support
-5. **TypeScript Frontend**: Better type safety and developer experience

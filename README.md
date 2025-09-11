@@ -113,3 +113,6 @@ npm start
 * `GET /api/bookings` - Get all bookings (admin only)
 * `DELETE /api/bookings/:bookingId` - Cancel booking (auth required)
 
+**Admin Details:**  
+- Email: `admin@gmail.com`  
+- Password: `123456`

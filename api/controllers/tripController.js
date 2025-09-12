@@ -32,7 +32,6 @@ exports.createTrip = async (req, res) => {
       await Promise.all(seatPromises);
     }
 
-    // ✅ include alias 'seats'
     const tripWithSeats = await Trip.findByPk(trip.id, {
       include: { model: Seat, as: 'seats' }
     });
@@ -47,7 +46,7 @@ exports.createTrip = async (req, res) => {
 // Get all trips with optional seat counts
 exports.getTrips = async (req, res) => {
   try {
-    // ✅ include alias 'seats'
+    // include alias 'seats'
     const trips = await Trip.findAll({ include: { model: Seat, as: 'seats' } });
 
     const tripsWithSeatStatus = await Promise.all(
@@ -82,7 +81,7 @@ exports.getTripById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // ✅ include alias 'seats'
+    // include alias 'seats'
     const trip = await Trip.findByPk(id, { include: { model: Seat, as: 'seats' } });
 
     if (!trip) return res.status(404).json({ success: false, error: 'trip_not_found' });

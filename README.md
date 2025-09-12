@@ -12,7 +12,7 @@ A real-time bus ticket booking system with seat selection, hold mechanism, and W
 - **Concurrent Booking Protection**: Prevents double-booking with distributed locking
 - **Role-based Access**: Admin and user roles with different permissions
 - **Responsive UI**: Modern React frontend with Tailwind CSS
-
+- **Send Grid**: Sends email confirmation booking
 ## Tech Stack
 
 ### Backend
@@ -22,6 +22,7 @@ A real-time bus ticket booking system with seat selection, hold mechanism, and W
 - Socket.IO for real-time updates
 - JWT authentication
 - Express Validator for input validation
+- Sendgrid
 
 ### Frontend
 - React with TypeScript
@@ -59,6 +60,7 @@ REDIS_URL=redis://localhost:6379
 JWT_SECRET=your-secret-key
 CLIENT_URL=http://localhost:3000
 PORT=5000
+SENDGRID_API_URL=url
 ```
 
 4. Start the server:

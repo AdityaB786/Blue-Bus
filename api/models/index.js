@@ -17,8 +17,6 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   },
 });
 
-
-// Instantiate models
 const Trip = TripModel(sequelize);
 const Seat = SeatModel(sequelize);
 const User = UserModel(sequelize);

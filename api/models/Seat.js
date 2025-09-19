@@ -11,6 +11,6 @@ module.exports = (sequelize) =>
     number: { type: DataTypes.INTEGER, allowNull: false },
     column: { type: DataTypes.STRING },
     price: { type: DataTypes.FLOAT, allowNull: false },
-    status: { type: DataTypes.STRING, defaultValue: 'available' }, // available / held / sold
-    TripId: { type: DataTypes.UUID, allowNull: false } // 👈 foreign key
+    status: { type: DataTypes.STRING, defaultValue: 'available' }, 
+    TripId: { type: DataTypes.UUID, allowNull: false } 
   });

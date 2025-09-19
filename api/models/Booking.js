@@ -4,7 +4,6 @@ module.exports = (sequelize) => {
   return sequelize.define('Booking', {
     id: { 
       type: DataTypes.UUID, 
-      defaultValue: DataTypes.UUIDV4, 
       primaryKey: true 
     },
     UserId: { 

@@ -13,6 +13,4 @@ module.exports = (sequelize) =>
     departure_at: { type: DataTypes.DATE, allowNull: false },
     arrival_at: { type: DataTypes.DATE, allowNull: false },
     bus_type: { type: DataTypes.STRING, allowNull: false },
-    sale_starts_at: { type: DataTypes.DATE, allowNull: false },
-    sale_ends_at: { type: DataTypes.DATE, allowNull: false },
   });

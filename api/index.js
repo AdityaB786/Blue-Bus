@@ -21,6 +21,7 @@ app.use('/api/trips', tripRoutes);
 app.use('/api/seats', seatRoutes);
 app.use('/api/bookings', bookingRoutes);
 
+
 // Health check
 app.get('/health', (req, res) => res.send('OK'));
 
@@ -36,5 +37,4 @@ server.listen(PORT, () =>
   console.log(`🚍 Server running on port ${PORT}`)
 );
 
-// Sync DB (only in dev or first-time setup)
 syncDB();

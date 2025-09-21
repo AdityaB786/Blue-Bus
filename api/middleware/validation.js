@@ -1,6 +1,6 @@
 const { param, body, validationResult } = require('express-validator');
 
-// Helper to handle validation errors
+// handle validation errors
 const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -74,6 +74,41 @@ const validateCancelBooking = [
   handleValidationErrors
 ];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Custom validation to check if trip exists and is bookable
 const validateTripBookable = async (req, res, next) => {
   try {
@@ -87,22 +122,12 @@ const validateTripBookable = async (req, res, next) => {
     
     const now = new Date();
     
-    // Check if sales have started
-    if (trip.sale_starts_at && new Date(trip.sale_starts_at) > now) {
-      return res.status(400).json({ success: false, error: 'sales_not_started' });
-    }
-    
-    // Check if sales have ended
-    if (trip.sale_ends_at && new Date(trip.sale_ends_at) < now) {
-      return res.status(400).json({ success: false, error: 'sales_ended' });
-    }
-    
     // Check if trip has already departed
     if (trip.departure_at && new Date(trip.departure_at) < now) {
       return res.status(400).json({ success: false, error: 'trip_departed' });
     }
     
-    req.trip = trip; // Attach trip to request for use in controller
+    req.trip = trip; 
     next();
   } catch (error) {
     console.error('Trip validation error:', error);

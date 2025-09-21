@@ -17,17 +17,15 @@ exports.signup = async (req, res) => {
 
     const hashed = await bcrypt.hash(password, 10);
 
-    // Default role is "user"
     let userRole = 'user';
 
-    // Allow bootstrap admin creation if no admin exists
     if (role === 'admin') {
       const adminExists = await User.findOne({ where: { role: 'admin' } });
       if (!adminExists) {
         userRole = 'admin';
       }
     }
-
+    //create new user
     const user = await User.create({
       name,
       email,
@@ -50,14 +48,15 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    //check if user has an account
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json({ success: false, error: 'invalid_credentials' });
+      return res.status(400).json({ success: false, error: 'invalid_email' });
     }
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
-      return res.status(400).json({ success: false, error: 'invalid_credentials' });
+      return res.status(400).json({ success: false, error: 'invalid_password' });
     }
 
     const token = jwt.sign(
@@ -77,6 +76,7 @@ exports.login = async (req, res) => {
   }
 };
 
+// Returns logged in User data
 exports.me = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.id);

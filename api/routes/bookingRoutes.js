@@ -10,7 +10,7 @@ router.get('/my', auth, bookingCtrl.getMyBookings);
 // Admin: get all bookings
 router.get('/', auth, isAdmin, bookingCtrl.getBookings);
 
-// Cancel booking (user can cancel their own, admin can cancel any)
+// Cancel booking (user can cancel their own)
 router.delete('/:bookingId', auth, bookingCtrl.cancelBooking);
 
 module.exports = router;

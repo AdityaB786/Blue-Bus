@@ -61,7 +61,7 @@ export const MyBookingsPage: React.FC = () => {
                     </p>
                     <p className="mt-1 flex items-center text-sm text-gray-500">
                       <span className="font-medium">Total:</span>
-                      <span className="ml-1">${booking.total_amount}</span>
+                      <span className="ml-1">{booking.total_amount}</span>
                     </p>
                     <p className="mt-1 flex items-center text-sm text-gray-500">
                       <span className="font-medium">Booked on:</span>

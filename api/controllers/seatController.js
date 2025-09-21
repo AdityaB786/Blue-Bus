@@ -2,7 +2,7 @@ const { Seat, Booking, sequelize } = require('../models');
 const redis = require('../redis');
 const { broadcast } = require('../models/wsServer');
 
-const HOLD_TTL = 120; // 2 minutes
+const HOLD_TTL = 120; 
 
 // --- Hold Seats ---
 exports.holdSeats = async (req, res) => {

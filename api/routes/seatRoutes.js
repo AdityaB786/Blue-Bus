@@ -10,7 +10,7 @@ const {
   validateSeatNumbers
 } = require('../middleware/validation');
 
-// 👤 User must be logged in to hold/purchase/release seats
+// User must be logged in to hold/purchase/release seats
 router.post(
   '/:tripId/hold', 
   auth, 
@@ -35,7 +35,7 @@ router.post(
   seatController.releaseSeats
 );
 
-// 🌍 Public: view current seat status for a trip
+// view current seat status for a trip
 router.get('/:tripId/status', seatController.getSeatStatus);
 
 module.exports = router;

@@ -2,30 +2,31 @@ const { Booking, Seat, sequelize } = require('../models');
 const { broadcast } = require('../models/wsServer');
 const redis = require('../redis');
 const sendEmail = require('../utils/sendEmail');
+
 exports.createBooking = async (req, res) => {
   const t = await sequelize.transaction();
   try {
     const { TripId, seats } = req.body;
     const user = req.user;
 
-    // 1️⃣ Create booking
+    // Create booking
     const booking = await Booking.create(
       {
         UserId: user.id,
         TripId,
         seats,
-        total_amount: seats.length * 500 // example price
+        total_amount: seats.length  
       },
       { transaction: t }
     );
 
-    // 2️⃣ Mark seats as booked
+    // Mark seats as booked
     await Seat.update(
       { status: 'booked' },
       { where: { TripId, number: seats }, transaction: t }
     );
 
-    // 3️⃣ Optionally set Redis holds
+    // Optionally set Redis holds
     for (const seatNumber of seats) {
       const key = `trip:${TripId}:seat:${seatNumber}`;
       await redis.set(key, 'booked');
@@ -33,10 +34,10 @@ exports.createBooking = async (req, res) => {
 
     await t.commit();
 
-    // 4️⃣ Broadcast to other users
+    // Broadcast to other users
     broadcast({ type: 'seat_booked', tripId: TripId, seats });
 
-    // 5️⃣ Send confirmation email
+    // Send confirmation email
     const emailText = `Your booking for trip ${TripId} is confirmed. Seats: ${seats.join(', ')}. Total amount: ₹${booking.total_amount}.`;
     const emailHtml = `
       <h2>Booking Confirmed!</h2>

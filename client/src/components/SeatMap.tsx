@@ -1,7 +1,7 @@
-import React from 'react';
-import { Seat } from '../types';
-import { useAppSelector, useAppDispatch } from '../hooks/redux';
-import { toggleSeatSelection } from '../store/bookingSlice';
+import React from "react";
+import { Seat } from "../types";
+import { useAppSelector, useAppDispatch } from "../hooks/redux";
+import { toggleSeatSelection } from "../store/bookingSlice";
 
 interface SeatMapProps {
   seats: Seat[];
@@ -23,16 +23,18 @@ export const SeatMap: React.FC<SeatMapProps> = ({ seats, busType }) => {
 
   const handleSeatClick = (seat: Seat) => {
     if (!user) {
-      alert('Please login to select seats');
+      alert("Please login to select seats");
       return;
     }
 
-    if (seat.status !== 'available') {
+    if (seat.status !== "available") {
       return;
     }
 
     if (holdId) {
-      alert('Please complete or cancel your current booking before selecting new seats');
+      alert(
+        "Please complete or cancel your current booking before selecting new seats"
+      );
       return;
     }
 
@@ -41,25 +43,25 @@ export const SeatMap: React.FC<SeatMapProps> = ({ seats, busType }) => {
 
   const getSeatColor = (seat: Seat) => {
     if (selectedSeats.includes(seat.number)) {
-      return 'bg-blue-500 text-white';
+      return "bg-blue-500 text-white";
     }
 
     switch (seat.status) {
-      case 'available':
-        return 'bg-green-100 hover:bg-green-200 text-green-800';
-      case 'held':
-        return 'bg-amber-100 text-amber-800 cursor-not-allowed';
-      case 'sold':
-        return 'bg-red-100 text-red-800 cursor-not-allowed';
+      case "available":
+        return "bg-green-100 hover:bg-green-200 text-green-800";
+      case "held":
+        return "bg-amber-100 text-amber-800 cursor-not-allowed";
+      case "sold":
+        return "bg-red-100 text-red-800 cursor-not-allowed";
       default:
-        return 'bg-gray-100';
+        return "bg-gray-100";
     }
   };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow">
       <h3 className="text-lg font-medium mb-4">Select Seats</h3>
-      
+
       {/* Legend */}
       <div className="flex flex-wrap gap-4 mb-6 text-sm">
         <div className="flex items-center">
@@ -95,7 +97,10 @@ export const SeatMap: React.FC<SeatMapProps> = ({ seats, busType }) => {
                   <button
                     key={seat.number}
                     onClick={() => handleSeatClick(seat)}
-                    disabled={seat.status !== 'available' && !selectedSeats.includes(seat.number)}
+                    disabled={
+                      seat.status !== "available" &&
+                      !selectedSeats.includes(seat.number)
+                    }
                     className={`w-10 h-10 rounded text-sm font-medium transition-colors ${getSeatColor(
                       seat
                     )}`}
@@ -110,7 +115,10 @@ export const SeatMap: React.FC<SeatMapProps> = ({ seats, busType }) => {
                   <button
                     key={seat.number}
                     onClick={() => handleSeatClick(seat)}
-                    disabled={seat.status !== 'available' && !selectedSeats.includes(seat.number)}
+                    disabled={
+                      seat.status !== "available" &&
+                      !selectedSeats.includes(seat.number)
+                    }
                     className={`w-10 h-10 rounded text-sm font-medium transition-colors ${getSeatColor(
                       seat
                     )}`}
@@ -133,10 +141,12 @@ export const SeatMap: React.FC<SeatMapProps> = ({ seats, busType }) => {
         <div className="mt-6 p-4 bg-blue-50 rounded-lg">
           <h4 className="font-medium text-blue-900">Selected Seats</h4>
           <p className="text-blue-700">
-            Seat Number: {selectedSeats.sort((a, b) => a - b).join(', ')}
+            Seat Number: {[...selectedSeats].sort((a, b) => a - b).join(", ")}
           </p>
+
           <p className="text-blue-700">
-            Total seats: {selectedSeats.length} seat{selectedSeats.length > 1 ? 's' : ''}
+            Total seats: {selectedSeats.length} seat
+            {selectedSeats.length > 1 ? "s" : ""}
           </p>
           <p className="text-sm text-blue-600 mt-2">
             Price will be calculated when you proceed to hold seats

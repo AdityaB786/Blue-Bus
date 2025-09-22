@@ -85,7 +85,6 @@ export const LoginPage: React.FC = () => {
               />
             </div>
           </div>
-          {/* Admin details line outside the input wrapper */}
           <div className="text-sm text-gray-600 text-center space-y-1">
             <p>Admin details:</p>
             <p>

@@ -19,7 +19,7 @@ function safeJSONParse<T>(item: string | null): T | null {
   }
 }
 
-// ---------- INITIAL STATE ----------
+// ---------- GET USER DATA FOR PAGE RELOAD  ----------
 const initialState: AuthState = {
   user: safeJSONParse<User>(localStorage.getItem('user')),
   token: localStorage.getItem('token') ?? null,
@@ -98,6 +98,6 @@ const authSlice = createSlice({
   },
 });
 
-// ---------- EXPORTS ----------
+
 export const { logout, clearError } = authSlice.actions;
 export default authSlice.reducer;

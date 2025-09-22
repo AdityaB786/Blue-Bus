@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { seatsApi, bookingsApi } from '../services/api';
-import { Booking, HoldResponse } from '../types';
+import { Booking } from '../types';
 
 interface BookingState {
   selectedSeats: number[];

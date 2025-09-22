@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
       return res.status(401).json({ success: false, error: 'invalid_user' });
     }
 
-    req.user = user; // full user object with role
+    req.user = user; 
     next();
   } catch (err) {
     console.error('[Auth Middleware Error]', err);
